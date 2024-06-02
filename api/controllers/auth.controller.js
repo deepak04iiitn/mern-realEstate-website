@@ -1,7 +1,7 @@
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 
-export const signup = async (req , res) => {
+export const signup = async (req , res , next) => {
 
     const { username , email , password } = req.body;     /* hum log ye information client side ke body se laare h */
 
@@ -16,7 +16,10 @@ export const signup = async (req , res) => {
         res.status(201).json("User created successfully");
 
     } catch (error) {
-        res.status(500).json(error.message);              /* but this is not the best way to handle errors , the best way is to have functions and middlewares */
+
+        /* res.status(500).json(error.message); ---> but this is not the best way to handle errors , the best way is to have functions and middlewares */
+        next(error);
+        
     }
 
-}
+};
