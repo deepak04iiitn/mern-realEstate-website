@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';              /* using this hook we can dispatch the functions that we have */
+import { signInStart , signInSuccess , signInFailure } from '../redux/user/userSlice';
 
 export default function SignIn() {
 
   const [formData , setFormData] = useState({});       /* whenever somethings value changes , we use state to keep track of all the changes */
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+  const { loading , error } = useSelector((state) => state.user);
+
+  /* const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); */
+
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
   const handleChange = (e) => {
@@ -25,7 +33,7 @@ export default function SignIn() {
 
       try {
         
-          setLoading(true);
+          dispatch(signInStart());                       /* starting the loading  , setLoading(true) */
           const res = await fetch('/api/auth/signin' , 
           {
             method : 'POST',
@@ -39,17 +47,22 @@ export default function SignIn() {
         console.log(data);
         if(data.success === false) 
           {
-            setError(data.message);
-            setLoading(fasle);
+            dispatch(signInFailure(data.message));
             return;
           }
-          setLoading(false);                               /* here bcz the loading is completed */
-          setError(null);
+
+          dispatch(signInSuccess(data));
+          /* setLoading(false); */                              /* here bcz the loading is completed */
+          /* setError(null); */
+
           navigate('/');
 
       } catch (error) {
-          setLoading(false);
-          setError(error.message);
+
+          dispatch(signInFailure(error.message));
+
+          /* setLoading(false);
+          setError(error.message); */
       }
 
   };
