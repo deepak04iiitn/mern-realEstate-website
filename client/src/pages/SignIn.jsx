@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';              /* using this hook we can dispatch the functions that we have */
 import { signInStart , signInSuccess , signInFailure } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 export default function SignIn() {
 
@@ -83,6 +84,7 @@ export default function SignIn() {
           <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
               { loading ? 'Loading...' : 'Sign In' }
           </button>
+          <OAuth />
       </form>
 
       <div className='flex gap-2 mt-5'>
