@@ -28,7 +28,7 @@ export default function Header() {
 
 
   return (
-    <header className='bg-slate-200 shadow-md'>
+    <header className='bg-slate-200 shadow-lg'>
 
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3 '>
 
@@ -39,7 +39,7 @@ export default function Header() {
             </h1>
             </Link>
 
-            <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'>
+            <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-[50px] flex items-center'>
                 <input 
                     type='text' 
                     placeholder='Search...' 

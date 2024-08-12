@@ -113,6 +113,7 @@ export default function Home() {
             </div>
           </div>
         )}
+        <hr className='border-t-4'></hr>
         {rentListings && rentListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
@@ -126,6 +127,7 @@ export default function Home() {
             </div>
           </div>
         )}
+        <hr className='border-t-4'></hr>
         {saleListings && saleListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
